@@ -4,15 +4,29 @@
     max-width: 800px;
     margin: auto;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-.yesHeading {
-    font-size: 24px;
-    color: $yes-colour;
-}
+.toolbar {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    height: 3rem;
 
-.noHeading {
-    font-size: 24px;
-    color: $no-colour;
+    button {
+        outline: none;
+        flex: 1 1 2.3125rem;
+        width: 2.3125rem;
+        background: #eee;
+        font-size: 14px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        margin: 0 2px;
+
+        &.active-button {
+            background: #757575;
+            color: white;
+        }
+    }
 }

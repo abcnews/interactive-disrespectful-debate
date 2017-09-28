@@ -5,24 +5,48 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    position: relative;
+    padding-left: 25px;
+    margin: 0 5px 0 5px;
 
     p {
         margin: 0;
-        padding: 0;
+        padding: 0 0 5px 0;
     }
 
     img {
-        max-width: 100%;
+        width: 100%;
         margin-bottom: -4px;
     }
+}
 
-    &.yes {
-        margin-right: 10px;
-    }
+.type {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25px;
+    background: #999;
 
-    &.no {
-        margin-left: 10px;
+    span {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-90deg);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
+}
+
+.wrapper.yes .type {
+    background: $yes-colour;
+}
+
+.wrapper.no .type {
+    background: $no-colour;
 }
 
 .date {
@@ -33,12 +57,12 @@
 }
 
 .content {
-    padding: 16px;
+    padding: 15px;
     position: relative;
 }
 
 .link {
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 12px;
 
     a {

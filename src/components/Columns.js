@@ -6,6 +6,7 @@ class Columns extends Component {
     constructor(props) {
         super(props);
 
+        this.setColumns = this.setColumns.bind(this);
         this.onResize = this.onResize.bind(this);
         this.columns = this.columns.bind(this);
 
@@ -23,14 +24,23 @@ class Columns extends Component {
         window.removeEventListener('resize', this.onResize);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.columnCount !== this.props.columnCount) {
+            this.setColumns(nextProps.columnCount);
+        }
+    }
+
+    setColumns(columnCount) {
+        const canDoMultipleColumns = window.innerWidth > 450;
+        const columns = columnCount == 2 && canDoMultipleColumns ? 2 : 1;
+
+        if (columns !== this.state.columns) {
+            this.setState(state => ({ columns }));
+        }
+    }
+
     onResize() {
-        // Sizing doesn't happen until a repaint
-        setTimeout(() => {
-            const columns = this.wrapper && this.wrapper.offsetWidth < 600 ? 1 : 2;
-            if (columns !== this.state.columns) {
-                this.setState(state => ({ columns }));
-            }
-        });
+        this.setColumns(this.props.columnCount);
     }
 
     /**
@@ -59,18 +69,20 @@ class Columns extends Component {
 
     render() {
         return (
-            <div className={styles.wrapper} ref={el => (this.wrapper = el)}>
+            <div className={styles.wrapper}>
                 {this.columns().map((column, columnIndex) => {
                     return (
                         <div
                             className={styles.column}
                             style={{ width: `${100 / this.state.columns}%` }}
                             key={columnIndex}>
-                            {column.map((child, panelIndex) => (
-                                <div className={styles.cell} key={panelIndex}>
-                                    {child}
-                                </div>
-                            ))}
+                            {column.map(child => {
+                                return (
+                                    <div className={styles.cell} key={child.attributes.panel.idx}>
+                                        {child}
+                                    </div>
+                                );
+                            })}
                         </div>
                     );
                 })}

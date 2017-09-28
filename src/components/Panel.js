@@ -40,9 +40,10 @@ class Panel extends Component {
         const { panel } = this.props;
 
         return (
-            <div
-                className={`${styles.wrapper} ${panel.type === 'yes' ? styles.yes : styles.no} ${this.props
-                    .className}`}>
+            <div className={`${styles.wrapper} ${styles[panel.type]} ${this.props.className || ''}`}>
+                <div className={styles.type}>
+                    <span>{panel.type}</span>
+                </div>
                 {panel.imageUrl && <img src={panel.imageUrl} />}
                 <div className={styles.content}>
                     {this.renderDate(panel.date)}
