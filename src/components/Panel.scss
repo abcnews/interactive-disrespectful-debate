@@ -1,0 +1,53 @@
+@import './_constants.scss';
+
+.wrapper {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        max-width: 100%;
+        margin-bottom: -4px;
+    }
+
+    &.yes {
+        margin-right: 10px;
+    }
+
+    &.no {
+        margin-left: 10px;
+    }
+}
+
+.date {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.content {
+    padding: 16px;
+    position: relative;
+}
+
+.link {
+    margin-top: 10px;
+    font-size: 12px;
+
+    a {
+        color: #666 !important;
+        display: block;
+        text-decoration: none;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
