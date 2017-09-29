@@ -10,7 +10,7 @@ class App extends Component {
 
         this.state = {
             sortBy: 'asc',
-            grouped: true
+            grouped: window.innerWidth > 450
         };
     }
 
@@ -44,12 +44,12 @@ class App extends Component {
                         <button
                             onClick={e => this.setState({ grouped: true })}
                             className={this.state.grouped === true ? styles.activeButton : ''}>
-                            Grouped
+                            Group
                         </button>
                         <button
                             onClick={e => this.setState({ grouped: false })}
                             className={this.state.grouped === false ? styles.activeButton : ''}>
-                            Ungrouped
+                            Ungroup
                         </button>
 
                         <div className={styles.flexibleSpace} />
@@ -57,7 +57,7 @@ class App extends Component {
                         <button
                             onClick={e => this.setState({ sortBy: 'asc' })}
                             className={this.state.sortBy === 'asc' ? styles.activeButton : ''}>
-                            Newest
+                            Latest
                         </button>
                         <button
                             onClick={e => this.setState({ sortBy: 'desc' })}
@@ -66,7 +66,9 @@ class App extends Component {
                         </button>
                     </div>
 
-                    <Columns columnCount={this.state.grouped ? 2 : 1}>
+                    <Columns
+                        columnCount={this.state.grouped ? 2 : 1}
+                        style={{ maxWidth: this.state.grouped ? '100%' : '500px' }}>
                         {sortedPanels.map((panel, index) => <Panel key={index} type={panel.type} panel={panel} />)}
                     </Columns>
                 </div>

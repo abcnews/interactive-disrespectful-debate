@@ -69,7 +69,7 @@ class Columns extends Component {
 
     render() {
         return (
-            <div className={styles.wrapper}>
+            <div className={`${styles.wrapper} ${styles.className || ''}`} style={this.props.style}>
                 {this.columns().map((column, columnIndex) => {
                     return (
                         <div

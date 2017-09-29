@@ -8,7 +8,7 @@
 
 .toolbar {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     display: flex;
     height: 3rem;
 
@@ -23,10 +23,15 @@
         cursor: pointer;
         padding: 5px 10px;
         margin: 0 2px;
+        flex-shrink: 0;
 
         &.active-button {
             background: #757575;
             color: white;
         }
+    }
+
+    .flexibleSpace {
+        width: 20px;
     }
 }
