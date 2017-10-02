@@ -8,10 +8,27 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.onResize = this.onResize.bind(this);
+
     this.state = {
       sortBy: 'asc',
       grouped: window.innerWidth > 450
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  onResize() {
+    if (window.innerWidth < 450) {
+      if (this.state.grouped) this.setState(state => ({ grouped: false }));
+      if (this.state.sortBy === 'desc') this.setState(state => ({ sortBy: 'asc' }));
+    }
   }
 
   render() {
@@ -44,12 +61,12 @@ class App extends Component {
             <button
               onClick={e => this.setState({ grouped: true })}
               className={this.state.grouped === true ? styles.activeButton : ''}>
-              Group
+              Grouped
             </button>
             <button
               onClick={e => this.setState({ grouped: false })}
               className={this.state.grouped === false ? styles.activeButton : ''}>
-              Ungroup
+              Split
             </button>
 
             <div className={styles.flexibleSpace} />
