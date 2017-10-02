@@ -1,43 +1,43 @@
 @import './_constants.scss';
 
 .root {
-    max-width: 800px;
-    margin: auto;
-    box-sizing: border-box;
+  max-width: 800px;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .toolbar {
-    width: 100%;
-    margin-bottom: 40px;
-    display: flex;
-    height: 3rem;
+  width: 100%;
+  margin-bottom: 40px;
+  display: flex;
+  height: 3rem;
 
-    button {
-        outline: none;
-        flex: 1 1 2.3125rem;
-        width: 2.3125rem;
-        background: #eee;
-        font-size: 14px;
-        font-weight: 700;
-        border: none;
-        cursor: pointer;
-        padding: 5px 10px;
-        margin: 0 2px;
-        flex-shrink: 0;
+  button {
+    outline: none;
+    flex: 1 1 2.3125rem;
+    width: 2.3125rem;
+    background: #eee;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 2px;
+    flex-shrink: 0;
 
-        &.active-button {
-            background: #757575;
-            color: white;
-        }
+    &.active-button {
+      background: #757575;
+      color: white;
     }
+  }
 
-    .flexibleSpace {
-        width: 20px;
-    }
+  .flexibleSpace {
+    width: 20px;
+  }
 }
 
 @media (max-width: 450px) {
-    .toolbar {
-        display: none;
-    }
+  .toolbar {
+    display: none;
+  }
 }

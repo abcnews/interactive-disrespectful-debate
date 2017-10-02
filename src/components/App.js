@@ -5,74 +5,74 @@ const Columns = require('./Columns');
 const Panel = require('./Panel');
 
 class App extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            sortBy: 'asc',
-            grouped: window.innerWidth > 450
-        };
-    }
+    this.state = {
+      sortBy: 'asc',
+      grouped: window.innerWidth > 450
+    };
+  }
 
-    render() {
-        const { panels } = this.props;
+  render() {
+    const { panels } = this.props;
 
-        let sortedPanels = panels.sort((a, b) => {
-            if (this.state.grouped) {
-                if (a.type == 'yes' && b.type === 'no') {
-                    return 1;
-                } else if (a.type === 'no' && b.type === 'yes') {
-                    return -1;
-                }
-            }
+    let sortedPanels = panels.sort((a, b) => {
+      if (this.state.grouped) {
+        if (a.type == 'yes' && b.type === 'no') {
+          return 1;
+        } else if (a.type === 'no' && b.type === 'yes') {
+          return -1;
+        }
+      }
 
-            if (a.date - b.date === 0) {
-                return a.idx - b.idx;
-            }
+      if (a.date - b.date === 0) {
+        return a.idx - b.idx;
+      }
 
-            if (this.state.sortBy === 'desc') {
-                return a.date - b.date;
-            } else {
-                return b.date - a.date;
-            }
-        });
+      if (this.state.sortBy === 'desc') {
+        return a.date - b.date;
+      } else {
+        return b.date - a.date;
+      }
+    });
 
-        return (
-            <div className="u-full">
-                <div className={styles.root}>
-                    <div className={styles.toolbar}>
-                        <button
-                            onClick={e => this.setState({ grouped: true })}
-                            className={this.state.grouped === true ? styles.activeButton : ''}>
-                            Group
-                        </button>
-                        <button
-                            onClick={e => this.setState({ grouped: false })}
-                            className={this.state.grouped === false ? styles.activeButton : ''}>
-                            Ungroup
-                        </button>
+    return (
+      <div className="u-full">
+        <div className={styles.root}>
+          <div className={styles.toolbar}>
+            <button
+              onClick={e => this.setState({ grouped: true })}
+              className={this.state.grouped === true ? styles.activeButton : ''}>
+              Group
+            </button>
+            <button
+              onClick={e => this.setState({ grouped: false })}
+              className={this.state.grouped === false ? styles.activeButton : ''}>
+              Ungroup
+            </button>
 
-                        <div className={styles.flexibleSpace} />
+            <div className={styles.flexibleSpace} />
 
-                        <button
-                            onClick={e => this.setState({ sortBy: 'asc' })}
-                            className={this.state.sortBy === 'asc' ? styles.activeButton : ''}>
-                            Latest
-                        </button>
-                        <button
-                            onClick={e => this.setState({ sortBy: 'desc' })}
-                            className={this.state.sortBy === 'desc' ? styles.activeButton : ''}>
-                            Oldest
-                        </button>
-                    </div>
+            <button
+              onClick={e => this.setState({ sortBy: 'asc' })}
+              className={this.state.sortBy === 'asc' ? styles.activeButton : ''}>
+              Latest
+            </button>
+            <button
+              onClick={e => this.setState({ sortBy: 'desc' })}
+              className={this.state.sortBy === 'desc' ? styles.activeButton : ''}>
+              Oldest
+            </button>
+          </div>
 
-                    <Columns columnCount={this.state.grouped ? 2 : 1}>
-                        {sortedPanels.map((panel, index) => <Panel key={index} type={panel.type} panel={panel} />)}
-                    </Columns>
-                </div>
-            </div>
-        );
-    }
+          <Columns columnCount={this.state.grouped ? 2 : 1}>
+            {sortedPanels.map((panel, index) => <Panel key={index} type={panel.type} panel={panel} />)}
+          </Columns>
+        </div>
+      </div>
+    );
+  }
 }
 
 module.exports = App;
