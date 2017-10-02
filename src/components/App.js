@@ -66,9 +66,7 @@ class App extends Component {
                         </button>
                     </div>
 
-                    <Columns
-                        columnCount={this.state.grouped ? 2 : 1}
-                        style={{ maxWidth: this.state.grouped ? '100%' : '500px' }}>
+                    <Columns columnCount={this.state.grouped ? 2 : 1}>
                         {sortedPanels.map((panel, index) => <Panel key={index} type={panel.type} panel={panel} />)}
                     </Columns>
                 </div>
