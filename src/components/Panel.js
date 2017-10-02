@@ -1,4 +1,6 @@
 const { h, Component } = require('preact');
+const daysBetween = require('date-fns/difference_in_days');
+const distanceInWords = require('date-fns/distance_in_words_to_now');
 
 const MONTHS = [
   'January',
@@ -57,7 +59,14 @@ class Panel extends Component {
   renderDate(date) {
     if (!date) return null;
 
-    return <div className={styles.date}>{date.getDate() + ' ' + MONTHS[date.getMonth() - 1]}</div>;
+    let relativeDate = daysBetween(new Date(), date) > 14 ? '' : `, ${distanceInWords(date)} ago`;
+
+    return (
+      <div className={styles.date}>
+        {date.getDate() + ' ' + MONTHS[date.getMonth()]}
+        {relativeDate}
+      </div>
+    );
   }
 
   renderLink(link) {

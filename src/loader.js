@@ -1,5 +1,5 @@
 const alternatingCaseToObject = require('alternating-case-to-object');
-const MONTHS = [null, 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
 
 function parseDate(string) {
   let [day, month, year] = string.split(' ');
