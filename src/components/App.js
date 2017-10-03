@@ -66,7 +66,7 @@ class App extends Component {
             <button
               onClick={e => this.setState({ grouped: false })}
               className={this.state.grouped === false ? styles.activeButton : ''}>
-              Split
+              Ungrouped
             </button>
 
             <div className={styles.flexibleSpace} />
