@@ -2,6 +2,8 @@ const { h, Component } = require('preact');
 const daysBetween = require('date-fns/difference_in_days');
 const distanceInWords = require('date-fns/distance_in_words_to_now');
 
+const Picture = require('./Picture');
+
 const MONTHS = [
   'January',
   'February',
@@ -46,12 +48,12 @@ class Panel extends Component {
         <div className={styles.type}>
           <span>{panel.type}</span>
         </div>
-        {panel.imageUrl && <img src={panel.imageUrl} />}
         <div className={styles.content}>
           {this.renderDate(panel.date)}
           <div ref={el => (this.wrapper = el)} />
           {this.renderLink(panel.link)}
         </div>
+        {panel.picture && <Picture picture={panel.picture} />}
       </div>
     );
   }

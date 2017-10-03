@@ -7,7 +7,7 @@
   overflow: hidden;
   position: relative;
   padding-left: 25px;
-  margin: 0 5px 0 5px;
+  margin: 0 5px 10px 5px;
 
   p {
     margin: 0;
@@ -19,7 +19,7 @@
     margin-bottom: -4px;
   }
 
-  a {
+  div > p > a {
     color: rgb(17, 17, 17);
     text-decoration: underline;
     font-weight: bold;

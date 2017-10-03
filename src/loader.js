@@ -19,46 +19,13 @@ function parseDate(string) {
   return new Date(year, month, day);
 }
 
-/**
- * Get the content between section markers
- * @param {string} name
- * @return {object}
- */
-function getSection(name) {
-  // Grab the start
-  const startNode = document.querySelector(`a[name^="${name}"`);
-
-  let section = {
-    name,
-    config: alternatingCaseToObject(startNode.getAttribute('name').slice(name.length)),
-    startNode,
-    nodes: []
-  };
-
-  let hasMore = true;
-  let nextNode = startNode.nextElementSibling;
-  while (hasMore && nextNode) {
-    if (nextNode.tagName && (nextNode.getAttribute('name') || '').indexOf(`end${name}`) === 0) {
-      hasMore = false;
-    } else {
-      section.nodes.push(nextNode);
-    }
-
-    nextNode = nextNode.nextElementSibling;
-  }
-
-  section.endNode = nextNode;
-
-  return section;
-}
-
 function loadPanels() {
   if (!window._panels) {
     window._panels = [];
 
-    const debateSection = getSection('debate');
+    const debateSection = window.__ODYSSEY__.utils.anchors.getSections('debate')[0];
 
-    let nextConfig = debateSection.config;
+    let nextConfig = alternatingCaseToObject(debateSection.configSC);
     let nextNodes = [];
     let idx = 0;
     let nextType = '';
@@ -78,7 +45,7 @@ function loadPanels() {
     }
 
     // find each 'yes' or 'no' and split them into panels
-    debateSection.nodes.forEach((node, index) => {
+    debateSection.betweenNodes.forEach((node, index) => {
       if (node.tagName && node.tagName.toLowerCase() === 'a' && node.getAttribute('name')) {
         pushPanel();
 
@@ -103,7 +70,7 @@ function loadPanels() {
       }
 
       // Any trailing nodes just get added as a last marker
-      if (index === debateSection.nodes.length - 1) {
+      if (index === debateSection.betweenNodes.length - 1) {
         pushPanel();
       }
     });
@@ -117,8 +84,8 @@ function loadPanels() {
 
       // Check for an images
       panel.nodes.forEach((node, index) => {
-        if (node.querySelector('img')) {
-          if (!panel.imageUrl) panel.imageUrl = node.querySelector('img').src;
+        if (node.className.indexOf('ImageEmbed') > -1) {
+          if (!panel.picture) panel.picture = node;
           delete panel.nodes[index];
         }
       });

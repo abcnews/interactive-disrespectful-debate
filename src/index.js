@@ -26,4 +26,8 @@ if (process.env.NODE_ENV === 'development') {
   console.debug(`[interactive-disrespectful-debate] public path: ${__webpack_public_path__}`);
 }
 
-init();
+if (window.__ODYSSEY__) {
+  init();
+} else {
+  window.addEventListener('odyssey:api', init);
+}
