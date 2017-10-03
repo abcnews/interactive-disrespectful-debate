@@ -10,8 +10,6 @@ class Picture extends Component {
   componentDidMount() {
     if (!this.wrapper) return;
 
-    console.log('attaching picture', this.props.picture);
-
     this.wrapper.appendChild(this.props.picture);
   }
 
