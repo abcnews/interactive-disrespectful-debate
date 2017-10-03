@@ -15,7 +15,7 @@
     "@abcnews/aunty": "^5.5.0"
   },
   "dependencies": {
-    "alternating-case-to-object": "^1.0.0",
+    "alternating-case-to-object": "^1.0.1",
     "date-fns": "^1.28.5",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0"
