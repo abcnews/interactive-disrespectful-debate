@@ -50,7 +50,7 @@ class Panel extends Component {
         </div>
         <div className={styles.content}>
           {this.renderDate(panel.date)}
-          <div ref={el => (this.wrapper = el)} />
+          <div ref={el => (this.wrapper = el)} className="u-richtext" />
           {this.renderLink(panel.link)}
         </div>
         {panel.picture && <Picture picture={panel.picture} />}
