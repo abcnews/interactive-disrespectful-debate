@@ -9,6 +9,11 @@
   padding-left: 25px;
   margin: 0 5px 10px 5px;
 
+  &.yes {
+    padding-left: 0;
+    padding-right: 25px;
+  }
+
   p {
     margin: 0;
     padding: 0 0 5px 0;
@@ -37,6 +42,8 @@
   height: 100%;
   width: 25px;
   background: #999;
+  font-family: "ABCSans", Arial, Helvetica, sans-serif;
+  font-weight: bold;
 
   span {
     display: block;
@@ -53,6 +60,8 @@
 
 .wrapper.yes .type {
   background: $yes-colour;
+  left: inherit;
+  right: 0;
 }
 
 .wrapper.no .type {
@@ -63,6 +72,7 @@
   color: #999;
   margin-bottom: 10px;
   font-size: 14px;
+  font-family: "ABCSans", Arial, Helvetica, sans-serif;
 }
 
 .content {
