@@ -61,7 +61,7 @@ class Panel extends Component {
   renderDate(date) {
     if (!date) return null;
 
-    let relativeDate = daysBetween(new Date(), date) > 14 ? `` : `, ${distanceInWords(date)} ago`;
+    let relativeDate = daysBetween(new Date(), date) > 14 ? `` : ` - ${distanceInWords(date)} ago`;
 
     if (daysBetween(new Date(), date) > 150) {
       relativeDate = `, ${date.getFullYear()}`;
