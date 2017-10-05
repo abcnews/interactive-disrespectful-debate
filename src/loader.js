@@ -96,6 +96,8 @@ function loadPanels() {
         if (node.className.indexOf('ImageEmbed') > -1) {
           if (!panel.picture) panel.picture = node;
           delete panel.nodes[index];
+        } else if (node.tagName === 'IMG') {
+          node.setAttribute('height', null);
         }
       });
 
