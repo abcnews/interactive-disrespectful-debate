@@ -45,7 +45,7 @@ class Panel extends Component {
     return (
       <div className={`${styles.wrapper} ${styles[panel.type]} ${this.props.className || ''}`}>
         <div className={styles.type}>
-          <span>{panel.type}</span>
+          <span>{panel.type.split('').join(' ')}</span>
         </div>
         <div className={styles.content}>
           {this.renderDate(panel.date)}

@@ -4,21 +4,26 @@ const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', '
 function parseDate(string) {
   let [day, month, year] = string.split(' ');
 
-  if (parseFloat(day).toString() !== day) {
-    let swap = month;
-    month = day;
-    day = swap;
-  }
-
-  if (!year) year = 2017;
-
-  MONTHS.forEach((m, index) => {
-    if (typeof month === 'number') return;
-
-    if (month.toLowerCase().indexOf(m) === 0) {
-      month = index;
+  try {
+    // Check if month and day need to be swapped
+    if (parseInt(day, 10).toString() !== day) {
+      let swapper = day;
+      day = month;
+      month = swapper;
     }
-  });
+
+    if (!year) year = 2017;
+
+    MONTHS.forEach((m, index) => {
+      if (typeof month === 'number') return;
+
+      if (month.toLowerCase().indexOf(m) === 0) {
+        month = index;
+      }
+    });
+  } catch (ex) {
+    return false;
+  }
 
   return new Date(year, month, day);
 }
