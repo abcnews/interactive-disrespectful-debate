@@ -4,7 +4,11 @@ const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', '
 function parseDate(string) {
   let [day, month, year] = string.split(' ');
 
-  if (parseFloat(day).toString() !== day) return false;
+  if (parseFloat(day).toString() !== day) {
+    let swap = month;
+    month = day;
+    day = swap;
+  }
 
   if (!year) year = 2017;
 
@@ -82,11 +86,17 @@ function loadSection() {
         delete panel.nodes[0];
       }
 
-      // Check for an images
+      // Check for an image
       panel.nodes.forEach((node, index) => {
         if (node.className.indexOf('ImageEmbed') > -1) {
           if (!panel.picture) panel.picture = node;
           delete panel.nodes[index];
+        } else {
+          let img = node.tagName && node.tagName === 'IMG' ? node : node.querySelector('img');
+          if (img) {
+            img.removeAttribute('height');
+            img.style.setProperty('margin-top', '20px');
+          }
         }
       });
 
