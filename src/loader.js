@@ -19,9 +19,9 @@ function parseDate(string) {
   return new Date(year, month, day);
 }
 
-function loadPanels() {
-  if (!window._panels) {
-    window._panels = [];
+function loadSection() {
+  if (!window._section) {
+    let panels = [];
 
     const debateSection = window.__ODYSSEY__.utils.anchors.getSections('debate')[0];
 
@@ -34,7 +34,7 @@ function loadPanels() {
     function pushPanel() {
       if (nextNodes.length === 0) return;
 
-      window._panels.push({
+      panels.push({
         idx: idx++,
         type: nextType,
         config: nextConfig,
@@ -75,7 +75,7 @@ function loadPanels() {
       }
     });
 
-    window._panels = window._panels.map(panel => {
+    panels = panels.map(panel => {
       // Read the date, if there is one
       panel.date = parseDate(panel.nodes[0].innerText);
       if (panel.date) {
@@ -99,9 +99,17 @@ function loadPanels() {
 
       return panel;
     });
+
+    debateSection.panels = panels;
+
+    const mountNode = document.createElement('div');
+    debateSection.startNode.parentNode.insertBefore(mountNode, debateSection.startNode);
+    debateSection.mountNode = mountNode;
+
+    window._section = debateSection;
   }
 
-  return window._panels;
+  return window._section;
 }
 
-module.exports = { loadPanels };
+module.exports = { loadSection };

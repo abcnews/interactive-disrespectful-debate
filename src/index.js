@@ -1,13 +1,13 @@
 const { h, render } = require('preact');
-const { loadPanels } = require('./loader');
+const { loadSection } = require('./loader');
 
 const root = document.querySelector('[data-interactive-disrespectful-debate-root]');
 
 function init() {
-  const panels = loadPanels();
+  const section = loadSection();
 
   const App = require('./components/App');
-  render(<App panels={panels} />, root, root.firstChild);
+  render(<App panels={section.panels} />, section.mountNode, section.mountNode.firstChild);
 }
 
 if (module.hot) {
