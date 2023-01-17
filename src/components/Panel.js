@@ -16,7 +16,7 @@ const MONTHS = [
   'November',
   'December'
 ];
-const styles = require('./Panel.scss');
+const styles = require('./Panel.scss').default;
 
 class Panel extends Component {
   componentDidMount() {

@@ -1,4 +1,4 @@
-@import './_constants.scss';
+@import "./_constants.scss";
 
 .wrapper {
   background: white;
@@ -34,6 +34,13 @@
       color: rgb(17, 17, 17);
     }
   }
+
+  @media (min-width: 992px) {
+    figure {
+      margin-inline-start: 30px;
+      margin-inline-end: 30px;
+    }
+  }
 }
 
 .type {
@@ -43,7 +50,7 @@
   height: 100%;
   width: 25px;
   background: #999;
-  font-family: 'ABCSans Black', Arial, Helvetica, sans-serif;
+  font-family: "ABCSans Black", Arial, Helvetica, sans-serif;
 
   span {
     display: block;
@@ -73,7 +80,7 @@
   color: #999;
   margin-bottom: 10px;
   font-size: 14px;
-  font-family: 'ABCSans', Arial, Helvetica, sans-serif;
+  font-family: "ABCSans", Arial, Helvetica, sans-serif;
 }
 
 .content {

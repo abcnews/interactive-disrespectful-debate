@@ -1,6 +1,6 @@
 const { h, Component } = require('preact');
 
-const styles = require('./Picture.scss');
+const styles = require('./Picture.scss').default;
 
 class Picture extends Component {
   shouldComponentUpdate() {

@@ -1,5 +1,5 @@
 const { h, Component } = require('preact');
-const styles = require('./App.scss');
+const styles = require('./App.scss').default;
 
 const Columns = require('./Columns');
 const Panel = require('./Panel');
@@ -29,7 +29,7 @@ class App extends Component {
     });
 
     return (
-      <div className="u-full">
+      <div className="">
         <div className={styles.root}>
           <Columns columnCount={1}>
             {sortedPanels.map((panel, index) => <Panel key={index} type={panel.type} panel={panel} />)}

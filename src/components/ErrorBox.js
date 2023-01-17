@@ -1,5 +1,5 @@
 const { h, Component } = require('preact');
-const styles = require('./ErrorBox.scss');
+const styles = require('./ErrorBox.scss').default;
 
 class ErrorBox extends Component {
   componentDidMount() {

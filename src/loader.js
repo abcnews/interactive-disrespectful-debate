@@ -1,8 +1,21 @@
-const alternatingCaseToObject = require('alternating-case-to-object');
-const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+const alternatingCaseToObject = require("alternating-case-to-object");
+const MONTHS = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec"
+];
 
 function parseDate(string) {
-  let [day, month, year] = string.split(' ');
+  let [day, month, year] = string.split(" ");
 
   try {
     // Check if month and day need to be swapped
@@ -15,7 +28,7 @@ function parseDate(string) {
     if (!year) year = 2017;
 
     MONTHS.forEach((m, index) => {
-      if (typeof month === 'number') return;
+      if (typeof month === "number") return;
 
       if (month.toLowerCase().indexOf(m) === 0) {
         month = index;
@@ -32,12 +45,13 @@ function loadSection() {
   if (!window._section) {
     let panels = [];
 
-    const debateSection = window.__ODYSSEY__.utils.anchors.getSections('debate')[0];
+    const debateSection = window.__ODYSSEY__.utils.mounts.getSections("debate")[0];
 
-    let nextConfig = alternatingCaseToObject(debateSection.configSC);
+    // let nextConfig = alternatingCaseToObject(debateSection.configSC);
+    let nextConfig = alternatingCaseToObject("debate");
     let nextNodes = [];
     let idx = 0;
-    let nextType = '';
+    let nextType = "";
 
     // Commit the current nodes to a marker
     function pushPanel() {
@@ -55,16 +69,20 @@ function loadSection() {
 
     // find each 'yes' or 'no' and split them into panels
     debateSection.betweenNodes.forEach((node, index) => {
-      if (node.tagName && node.tagName.toLowerCase() === 'a' && node.getAttribute('name')) {
+      if (
+        node.tagName &&
+        node.tagName.toLowerCase() === "a" &&
+        node.getAttribute("name")
+      ) {
         pushPanel();
 
-        nextType = node.getAttribute('name').indexOf('yes') === 0 ? 'yes' : 'no';
+        nextType = node.getAttribute("name").indexOf("yes") === 0 ? "yes" : "no";
 
         // If marker has no config then just use the previous config
         let configString = node
-          .getAttribute('name')
-          .replace(/^yes/, '')
-          .replace(/^no/, '');
+          .getAttribute("name")
+          .replace(/^yes/, "")
+          .replace(/^no/, "");
         if (configString) {
           nextConfig = alternatingCaseToObject(configString);
         } else {
@@ -93,21 +111,22 @@ function loadSection() {
 
       // Check for an image
       panel.nodes.forEach((node, index) => {
-        if (node.className.indexOf('ImageEmbed') > -1) {
+        if (node.className.indexOf("ImageEmbed") > -1) {
           if (!panel.picture) panel.picture = node;
           delete panel.nodes[index];
         } else {
-          let img = node.tagName && node.tagName === 'IMG' ? node : node.querySelector('img');
+          let img =
+            node.tagName && node.tagName === "IMG" ? node : node.querySelector("img");
           if (img) {
-            img.removeAttribute('height');
-            img.style.setProperty('margin-top', '20px');
+            img.removeAttribute("height");
+            img.style.setProperty("margin-top", "20px");
           }
         }
       });
 
       // Check the link
       const lastNode = panel.nodes[panel.nodes.length - 1];
-      if (lastNode && lastNode.innerHTML.indexOf('<a') === 0) {
+      if (lastNode && lastNode.innerHTML.indexOf("<a") === 0) {
         panel.link = lastNode.firstElementChild.href;
         delete panel.nodes[panel.nodes.length - 1];
       }
@@ -117,7 +136,7 @@ function loadSection() {
 
     debateSection.panels = panels;
 
-    const mountNode = document.createElement('div');
+    const mountNode = document.createElement("div");
     debateSection.startNode.parentNode.insertBefore(mountNode, debateSection.startNode);
     debateSection.mountNode = mountNode;
 

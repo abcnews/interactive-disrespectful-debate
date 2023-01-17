@@ -1,6 +1,6 @@
 const { h, Component } = require('preact');
 
-const styles = require('./Columns.scss');
+const styles = require('./Columns.scss').default;
 
 class Columns extends Component {
   constructor(props) {
