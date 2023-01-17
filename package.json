@@ -12,7 +12,8 @@
     "start": "aunty serve"
   },
   "devDependencies": {
-    "@abcnews/aunty": "^13.2.2"
+    "@abcnews/aunty": "^13.2.2",
+    "babel-preset-preact": "^2.0.0"
   },
   "dependencies": {
     "alternating-case-to-object": "^1.0.1",
